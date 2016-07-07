@@ -38,7 +38,7 @@ exports.use = function () {
 
 					var check = send(control(text, commands))
 
-					if (check !== null) {
+					if (check !== null && check.message !== false) {
 						this.sendMessage({user_id: sender_id, screen_name: sender_name, text: check.reply}).then(result => { // eslint-disable-line camelcase
 							if (!result.recipient_id) {
 										// houston we have a problem
@@ -64,8 +64,7 @@ exports.use = function () {
 				if (twet.in_reply_to_user_id === id) {
 					var text = twet.text
 					var check = send(control(text, commands))
-
-					if (check !== null) {
+					if (check !== null && check.mention !== false) {
 						var reply = {}
 						if (twet.in_reply_to_status_id === null) {
 							reply.status = `@${twet.user.screen_name} ${check.reply}`
@@ -100,7 +99,9 @@ function control(msg, commands) {
 		})).indexOf(true) !== -1) {  // eslint-disable-line no-negated-condition
 			return {
 				status: true,
-				reply: command.reply()
+				reply: command.reply(),
+				message: command.message,
+				mention: command.mention
 			}
 		}
 		return {
