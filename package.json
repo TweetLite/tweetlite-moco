@@ -1,0 +1,39 @@
+{
+  "name": "twitbot-moco",
+  "version": "0.1.0",
+  "description": "twitbot moco middleware",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo index.js"
+  },
+  "xo": {
+    "semicolon": false,
+    "rules": {
+      "camelcase": [
+        2,
+        {
+          "properties": "never"
+        }
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c0b41/twitbot-moco.git"
+  },
+  "keywords": [
+    "twitbot",
+    "moco",
+    "middleware"
+  ],
+  "author": "c0b41",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/c0b41/twitbot-moco/issues"
+  },
+  "homepage": "https://github.com/c0b41/twitbot-moco#readme",
+  "devDependencies": {
+    "twitbot-core": "0.1.0-beta5",
+    "xo": "^0.16.0"
+  }
+}
