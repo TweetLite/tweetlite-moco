@@ -22,5 +22,19 @@
      reply() {
        return 'xxx?';
      }
+   },
+   {
+    matchs: [/\d+/],
+    message:true,
+    mention:false,
+    reply(twet){
+      var numb = /\d+/.exec(twet)
+      if(numb == null){
+        return `Örnek mesaj: 1 bölüm şarkıları göster`
+      } else {
+        return numb;
+      }
+
+    }
    }
  ]

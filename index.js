@@ -38,7 +38,7 @@ exports.use = function () {
 
 					var check = send(control(text, commands))
 
-					if (check !== null && check.message !== false) {
+					if (check !== null || check.message !== false || sender_name !== args.account) { // eslint-disable-line camelcase
 						this.sendMessage({user_id: sender_id, screen_name: sender_name, text: check.reply}).then(result => { // eslint-disable-line camelcase
 							if (!result.recipient_id) {
 										// houston we have a problem
@@ -94,12 +94,18 @@ exports.use = function () {
 
 function control(msg, commands) {
 	return commands.map(command => {
-		if ((command.texts.map(text => {
-			return msg.includes(text)
-		})).indexOf(true) !== -1) {  // eslint-disable-line no-negated-condition
+		var dump = null
+		if (command.texts) {
+			dump = command.texts.map(text => msg.includes(text))
+		}
+		if (command.matchs) {
+			dump = command.matchs.map(matc => msg.match(matc) !== null)
+		}
+
+		if (dump.indexOf(true) !== -1) {
 			return {
 				status: true,
-				reply: command.reply(),
+				reply: command.reply(msg),
 				message: command.message,
 				mention: command.mention
 			}
@@ -116,3 +122,6 @@ function send(que) {
 		return result.status === true && result.reply !== null
 	}) || null)
 }
+
+exports.control = control
+exports.send = send

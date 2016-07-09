@@ -9,7 +9,9 @@ npm install twitbot-moco
 ```sh
 twitbot use --src=~/.twitbot/node_modules/twitbot-moco
 --commands=~/.twitbot/ex_commands.js
---account=johndoe --message=true
+--account=johndoe
+--message=true
+--mention=334xxx // johndoe user id
 ```
 ## Module Usage
 
@@ -23,7 +25,7 @@ const TT = new Twitbot({conf})
 moco.call(TT, {
 	commands: `${__dirname}/commands.js`,
 	message: true, // message mod actived
-  mention:`xxxx` // mention mod actived
+  mention:`xxxx` // mention mod actived && need johndoe user id
 })
 
 ```
