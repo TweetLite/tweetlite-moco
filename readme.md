@@ -1,14 +1,14 @@
 ## Install
 
 ```sh
-npm install twitbot-moco
+npm install tweetlite-moco
 ```
 
 ## Usage
 
 ```sh
-twitbot use --src=~/.twitbot/node_modules/twitbot-moco
---commands=~/.twitbot/ex_commands.js
+tweetlite use --src=~/.tweetlite/node_modules/tweetlite-moco
+--commands=~/.tweetlite/ex_commands.js
 --account=johndoe
 --message=true
 --mention=334xxx // johndoe user id
@@ -16,16 +16,16 @@ twitbot use --src=~/.twitbot/node_modules/twitbot-moco
 ## Module Usage
 
 ```js
-import Twitbot from 'twitbot-core';
-import mocoFN from 'twitbot-moco';
+import TweetLite from 'tweetlite-core';
+import mocoFN from 'tweetlite-moco';
 
 const moco = mocoFN.use();
-const TT = new Twitbot({conf})
+const TT = new TweetLite({conf})
 
 moco.call(TT, {
 	commands: `${__dirname}/commands.js`,
 	message: true, // message mod actived
-  mention:`xxxx` // mention mod actived && need johndoe user id
+  	mention:`xxxx` // mention mod actived && need johndoe user id
 })
 
 ```
