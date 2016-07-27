@@ -38,7 +38,7 @@ exports.use = function () {
 
 					var check = send(control(text, commands))
 
-					if (check !== null || check.message !== false || sender_name !== args.account) { // eslint-disable-line camelcase
+					if (check !== null && check.message === true && sender_name !== args.account) { // eslint-disable-line camelcase
 						this.sendMessage({user_id: sender_id, screen_name: sender_name, text: check.reply}).then(result => { // eslint-disable-line camelcase
 							if (!result.recipient_id) {
 										// houston we have a problem
@@ -63,8 +63,9 @@ exports.use = function () {
 			mention.on('tweet', twet => {
 				if (twet.in_reply_to_user_id === id) {
 					var text = twet.text
+					var sender = twet.user.screen_name
 					var check = send(control(text, commands))
-					if (check !== null && check.mention !== false) {
+					if (check !== null && check.mention !== false && sender !== args.account) {
 						var reply = {}
 						if (twet.in_reply_to_status_id === null) {
 							reply.status = `@${twet.user.screen_name} ${check.reply}`
@@ -96,7 +97,7 @@ function control(msg, commands) {
 	return commands.map(command => {
 		var dump = null
 		if (command.texts) {
-			dump = command.texts.map(text => msg.includes(text))
+			dump = command.texts.map(text => msg.toLowerCase().includes(text.toLowerCase()))
 		}
 		if (command.matchs) {
 			dump = command.matchs.map(matc => msg.match(matc) !== null)
@@ -112,7 +113,9 @@ function control(msg, commands) {
 		}
 		return {
 			status: false,
-			reply: null
+			reply: null,
+			message: false,
+			mention: false
 		}
 	})
 }

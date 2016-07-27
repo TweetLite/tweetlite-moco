@@ -1,7 +1,7 @@
 {
-  "name": "twitbot-moco",
-  "version": "0.1.0",
-  "description": "twitbot moco middleware",
+  "name": "tweetlite-moco",
+  "version": "1.0.0",
+  "description": "tweetlite moco middleware",
   "main": "index.js",
   "scripts": {
     "test": "xo index.js"
@@ -19,21 +19,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/c0b41/twitbot-moco.git"
+    "url": "git+https://github.com/TweetLite/tweetlite-moco.git"
   },
   "keywords": [
-    "twitbot",
+    "tweetlite",
     "moco",
     "middleware"
   ],
   "author": "c0b41",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/c0b41/twitbot-moco/issues"
+    "url": "https://github.com/TweetLite/tweetlite-mocoissues"
   },
-  "homepage": "https://github.com/c0b41/twitbot-moco#readme",
+  "homepage": "https://github.com/TweetLite/tweetlite-moco#readme",
   "devDependencies": {
-    "twitbot-core": "0.1.0-beta5",
+    "tweetlite-core": "1.0.0",
     "xo": "^0.16.0"
   }
 }
